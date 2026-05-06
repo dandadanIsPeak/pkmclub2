@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+<title>PKM club</title>
+</head>
+<body class="d-flex justify-content-center align-items-center" style="height:100vh;">
+<div class="d-flex flex-column justify-contesnt-center">
+<span class="text-center pb-3">Login to youɾ account</span>
+<input class="form-control" id="username" placeholder="Email">
+<div class="input-group">
+<input class="form-control" id="password" type="password" placeholder="Password">
+<button id="submit" class="btn btn-primary" onclick="checkUsername()">Submit</button>
+</div>
+<div id="incorrect" class="alert alert-danger p-2 mt-4 d-none">Incorrect username or password. Please try again.</div>
+<div id="correct" class="alert alert-success p-2 mt-4 d-none">Correct password. <a class="link-alert" href="dashbord.html">Go to your dashboard</a></div>
+</div>
+<script src='https://sql.js.org/dist/sql-wasm.js'></script>
+<script>
+config = {
+locateFile: filename => `https://sql.js.org/dist/${filename}`
+}
+
+var failedAttempts = 0;
+// The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
+// We must specify this locateFile function if we are loading a wasm file from anywhere other than the current html page's folder.
+function checkUsername(){
+if (failedAttempts >= 3) {
+return;
+}
+
+initSqlJs(config).then(function(SQL){
+var db = new SQL.Database();
+let baseprompt="CREATE TABLE users (username varchar, password varchar); \
+INSERT INTO users VALUES ('25evanso@roundwoodpark.co.uk', 'evanso'); \
+INSERT INTO users VALUES ('24williamsj@roundwoodpark.co.uk','HOST');"; //HERE
+db.run(baseprompt);
+let prompt = "SELECT username FROM users WHERE username='" + document.getElementById("username").value + "' AND password='" + document.getElementById("password").value + "'";
+console.log(prompt);
+const person = db.exec(prompt);
+console.log("person found.: ");
+
+if (!person[0]){
+document.getElementById("username").value = "";
+document.getElementById("incorrect").classList.remove("d-none");
+failedAttempts++;
+} else {
+console.log(person[0].values);
+document.getElementById("incorrect").classList.add("d-none");
+document.getElementById("correct").classList.remove("d-none");
+}
+});
+}
+</script>
+<style>
+    body{
+        background-color: pink;
+    }
+    button {
+        color: rgb(249, 249, 249);
+    }
+    input {
+        color: pink;
+    }
+    span {
+        color: pink;
+
+    }
+</style>
+</body>
+</html>
