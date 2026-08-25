@@ -17,7 +17,7 @@
 <button id="submit" class="btn btn-primary" onclick="checkUsername()">Submit</button>
 </div>
 <div id="incorrect" class="alert alert-danger p-2 mt-4 d-none">Incorrect username or password. Please try again.</div>
-<div id="correct" class="alert alert-success p-2 mt-4 d-none">Correct password. <a class="link-alert" href="/hack_this_website/Dash">Go to your dashboard</a></div>
+<div id="correct" class="alert alert-success p-2 mt-4 d-none">Correct password. <a class="link-alert" href="dashbord.html">Go to your dashboard</a></div>
 </div>
 <script src='https://sql.js.org/dist/sql-wasm.js'></script>
 <script>
@@ -37,6 +37,7 @@ initSqlJs(config).then(function(SQL){
 var db = new SQL.Database();
 let baseprompt="CREATE TABLE users (username varchar, password varchar); \
 INSERT INTO users VALUES ('25evanso@roundwoodpark.co.uk', 'evanso'); \
+INSERT INTO users VALUES ('24ellisn@roundwoodpark.co.uk', '222'); \
 INSERT INTO users VALUES ('24williamsj@roundwoodpark.co.uk','HOST');"; //HERE
 db.run(baseprompt);
 let prompt = "SELECT username FROM users WHERE username='" + document.getElementById("username").value + "' AND password='" + document.getElementById("password").value + "'";
