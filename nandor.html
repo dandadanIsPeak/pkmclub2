@@ -1,0 +1,78 @@
+<h1>HI NANDOR</h1>
+<p>Welcome to your dashboard, here you can find all the information and resources you need.</p>
+<p>yo its Jake here i was going to keep most of the dashbords normal but i thought i would make your special</p>
+<p>tell me if you want me to change your background color and text color. Xx </p>
+<div></div>
+<h2>Points Earned:</h2>
+<div></div>
+<p1>1</p1>
+<div></div>
+<h3>history</h3>
+<p2>Regidrago Vstar PTCG x RPS Pokemon club event #1</p2>
+<button onclick="showMatchup1()" class="visible">tornament info </button>
+        <div id="matchup_tab_1">        	
+           <div><a class="link-alert" href="tor1.html"> no info </a></div>
+        </div>
+<div></div>
+
+<p3>Pokemon club pokedoku event #1</p3>
+<p4>tornament info</p4>
+<button onclick="showMatchup2()" class="visible">tornament info </button>
+        <div id="matchup_tab_2">        	
+           <div><a class="link-alert" href="tor1.html"> no info </a></div>
+        </div>
+<div></div>
+
+<div></div>
+<button onclick="showMatchup3()" class="visible"> general dashboard</button>
+        <div id="matchup_tab_3">        	
+           <div><a class="link-alert" href="dashbord.html">CLICK ME!</a></div>
+        </div>
+<div></div>
+
+<script>
+function showMatchup1() {
+    document.getElementById("matchup_tab_1").classList.toggle("visible");
+}
+function showMatchup2() {
+    document.getElementById("matchup_tab_2").classList.toggle("visible");
+}
+function showMatchup3() {
+    document.getElementById("matchup_tab_3").classList.toggle("visible");
+}
+
+</script>
+
+
+<style>
+    #matchup_tab_2 {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right:-100% ;
+    height: 100vh;
+    transition: right 250ms;
+    }
+
+    .visible {
+    right: 0 !important;
+    }
+
+    #matchup_tab_1 {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right:-100% ;
+    height: 100vh;
+    transition: right 250ms;
+    }
+
+    #matchup_tab_3 {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right:-100% ;
+    height: 100vh;
+    transition: right 250ms;
+    }
+</style>

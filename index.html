@@ -6,7 +6,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-<title>Challenge 2</title>
+<title>Login</title>
 </head>
 <body class="d-flex justify-content-center align-items-center" style="height:100vh;">
 <div class="d-flex flex-column justify-contesnt-center">
@@ -26,6 +26,16 @@ locateFile: filename => `https://sql.js.org/dist/${filename}`
 }
 
 var failedAttempts = 0;
+
+// Add a username and the page it should open here.
+// The username must exactly match the username in the users table below.
+// Example: 'newperson@example.com': 'new-page.html'
+const pageForUser = {
+	'25evanso@roundwoodpark.co.uk': 'oliverthegoat.html',
+	'24ellisn@roundwoodpark.co.uk': 'nandor.html',
+	'24williamsj@roundwoodpark.co.uk': 'dashbord.html'
+};
+
 // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
 // We must specify this locateFile function if we are loading a wasm file from anywhere other than the current html page's folder.
 function checkUsername(){
@@ -35,8 +45,10 @@ return;
 
 initSqlJs(config).then(function(SQL){
 var db = new SQL.Database();
+// To add a new login, add another INSERT with its username and password here.
+// Then add that same username to pageForUser above with its destination page.
 let baseprompt="CREATE TABLE users (username varchar, password varchar); \
-INSERT INTO users VALUES ('25evanso@roundwoodpark.co.uk', 'evanso'); \
+INSERT INTO users VALUES ('25evanso@roundwoodpark.co.uk', 'hi'); \
 INSERT INTO users VALUES ('24ellisn@roundwoodpark.co.uk', '222'); \
 INSERT INTO users VALUES ('24williamsj@roundwoodpark.co.uk','HOST');"; //HERE
 db.run(baseprompt);
@@ -53,6 +65,15 @@ failedAttempts++;
 console.log(person[0].values);
 document.getElementById("incorrect").classList.add("d-none");
 document.getElementById("correct").classList.remove("d-none");
+
+// Get the username that was checked successfully.
+const loggedInUsername = document.getElementById("username").value;
+const destinationPage = pageForUser[loggedInUsername];
+
+// Change the page after a successful login. Add the matching page above first.
+if (destinationPage) {
+window.location.href = destinationPage;
+}
 }
 });
 }
