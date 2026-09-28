@@ -33,7 +33,8 @@ var failedAttempts = 0;
 const pageForUser = {
 	'25evanso@roundwoodpark.co.uk': 'genericplayer.html',
 	'24ellisn@roundwoodpark.co.uk': 'nandor.html',
-	'24williamsj@roundwoodpark.co.uk': 'funtests.html'
+	'24williamsj@roundwoodpark.co.uk': 'funtests.html',
+	'm.hubbard@roundwoodpark.co.uk': 'mrhubbard.html'
 };
 
 // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
@@ -50,6 +51,7 @@ var db = new SQL.Database();
 let baseprompt="CREATE TABLE users (username varchar, password varchar); \
 INSERT INTO users VALUES ('25evanso@roundwoodpark.co.uk', 'hi'); \
 INSERT INTO users VALUES ('24ellisn@roundwoodpark.co.uk', '222'); \
+INSERT INTO users VALUES ('m.hubbard@roundwoodpark.co.uk', 'pkmclub'); \
 INSERT INTO users VALUES ('24williamsj@roundwoodpark.co.uk','HOST');"; //HERE
 db.run(baseprompt);
 let prompt = "SELECT username FROM users WHERE username='" + document.getElementById("username").value + "' AND password='" + document.getElementById("password").value + "'";
@@ -79,4 +81,15 @@ window.location.href = destinationPage;
 }
 </script>
 </body>
+<style>
+body {
+	background-color:pink
+}
+span {
+	color:white
+}
+button {
+	background-color:pink
+}
+</style>
 </html>
